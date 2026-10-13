@@ -26,4 +26,22 @@ int main() {
 
 	// 課題3
 	//int test{ 3.2 };
+
+	// 課題4
+	int buget{};
+	int RoadLength{};
+	int ConstructionFee{};
+
+	std::cout << "手持ちの予算\n";
+	std::cin >> buget;
+	std::cout << "建設する道路の長さ(マス数)\n";
+	std::cin >> RoadLength;
+	std::cout << "1マスあたりの建設費\n";
+	std::cin >> ConstructionFee;
+
+	std::cout << "建設費の合計:" << RoadLength * ConstructionFee << "\n";
+	std::cout << "建設後の残り予算:" << buget - RoadLength * ConstructionFee << "\n";
+	if (buget < RoadLength * ConstructionFee) {
+		std::cout << "予算が足りません\n";
+	}
 }
