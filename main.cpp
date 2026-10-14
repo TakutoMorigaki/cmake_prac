@@ -1,49 +1,27 @@
 #include <iostream>
 #include <windows.h>
 
-int getNumber()
-{
-    std::cout << "数値を入力: ";
-    int x{};
-    std::cin >> x;
-    return x;
-}
-
-int calcTax(int population, int taxPerPerson)
-{
-    return population * taxPerPerson;
-}
-
-int calcDistrictIncome(int population, int taxPerPerson, int bonus)
-{
-    int tax{ calcTax(population, taxPerPerson) };
-    return tax + bonus;
-}
-
-int calcTotal(int a, int b, int c)
-{
-    int total{ a };
-    total = total + b;
-    total = total + c;
-    return total;
-}
-
 int main()
 {
+#ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
+#endif
 
-    std::cout << "3つの地区の人口を順に入力してください\n";
-    int popA{ getNumber() };
-    int popB{ getNumber() };
-    int popC{ getNumber() };
+    std::cout << "sizeof int:" << sizeof(int) << "\n";
+    std::cout << "sizeof long:" << sizeof(long) << "\n";
+    std::cout << "sizeof long long:" << sizeof(long long) << "\n";
+    std::cout << "sizeof int32_t:" << sizeof(std::int32_t) << "\n";
+    std::cout << "sizeof int64_t:" << sizeof(std::int64_t) << "\n";
+    std::cout << "sizeof size_t:" << sizeof(std::size_t) << "\n";
 
-    int taxPerPerson{ 3 };
-    int bonus{ 100 };
+    long long money{ 2'000'000'000 };
+    int income{ 500'000'000 };
+    money = money + income;
+    std::cout << "所持金: " << money << '\n';
 
-    int incomeA{ calcDistrictIncome(popA, taxPerPerson, bonus) };
-    int incomeB{ calcDistrictIncome(popB, taxPerPerson, bonus) };
-    int incomeC{ calcDistrictIncome(popC, taxPerPerson, bonus) };   // bonus taxPerPersonの順番が逆
+    int budget{ 20'000 };
+    int cost{ 30'000 };
+    std::cout << "建設後の残り予算: " << budget - cost << '\n';
 
-    std::cout << "合計税収: " << calcTotal(incomeA, incomeB, incomeC) << '\n';
     return 0;
 }
