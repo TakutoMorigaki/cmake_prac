@@ -12,21 +12,37 @@ int main()
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    std::cout << "sizeof int:" << sizeof(int) << "\n";
-    std::cout << "sizeof long:" << sizeof(long) << "\n";
-    std::cout << "sizeof long long:" << sizeof(long long) << "\n";
-    std::cout << "sizeof int32_t:" << sizeof(std::int32_t) << "\n";
-    std::cout << "sizeof int64_t:" << sizeof(std::int64_t) << "\n";
-    std::cout << "sizeof size_t:" << sizeof(std::size_t) << "\n";
+    int totalPopulation{};
+    int countRegion{};
 
-    long long money{ 2'000'000'000 };
-    int income{ 500'000'000 };
-    money = money + income;
-    std::cout << "所持金: " << money << '\n';
+    std::cout << "総人口を入力: ";
+    std::cin >> totalPopulation;
+    std::cout << "地区の数を入力: ";
+    std::cin >> countRegion;
+    std::cout << "1地区あたりの平均人口: " << static_cast<double>(totalPopulation) / countRegion << "\n";
 
-    int budget{ 20'000 };
-    int cost{ 30'000 };
-    std::cout << "建設後の残り予算: " << budget - cost << '\n';
+    int budget{};
+    char decision{};
+    int parkFee{ 1500000 };
+
+    std::cout << "所持金を入力: ";
+    std::cin >> budget;
+
+    std::cout << "建築可能: ";
+    if (budget > parkFee) {
+        std::cout << "true\n";
+        std::cout << "建設しますか？ {y/n}: ";
+        std::cin >> decision;
+        if (decision == 'y') {
+            std::cout << "建設しました。残りの所持金:" << budget - parkFee << "\n";
+        }
+        else {
+            std::cout << "建設を見送りました";
+        }
+    }
+    else {
+        std::cout << "資金が足りません";
+    }
 
     return 0;
 }
