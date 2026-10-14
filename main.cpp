@@ -7,7 +7,7 @@
 #endif
 
 bool canAfford(std::int64_t budget, std::int64_t cost){
-    return budget >= 1500000;
+    return budget >= cost;
 }
 
 int main()
