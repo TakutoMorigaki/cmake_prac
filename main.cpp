@@ -6,7 +6,7 @@
 #include <windows.h>
 #endif
 
-bool canAfford(long long budget){
+bool canAfford(std::int64_t budget, std::int64_t cost){
     return budget >= 1500000;
 }
 
@@ -21,22 +21,26 @@ int main()
 
     std::cout << "総人口を入力: ";
     std::cin >> totalPopulation;
+
     std::cout << "地区の数を入力: ";
     std::cin >> countRegion;
+
     if (countRegion == 0) {
+        std::cout << "地区は1以上を入力してください\n";
         return 1;
     }
+
     std::cout << "1地区あたりの平均人口: " << static_cast<double>(totalPopulation) / countRegion << "\n";
 
     std::int64_t budget{};
     char decision{};
-    int parkFee{ 1500000 };
+    std::int64_t parkFee{ 1500000 };
 
     std::cout << "所持金を入力: ";
     std::cin >> budget;
 
-    std::cout << "建設可能;" << std::boolalpha << canAfford(budget) << '\n';
-    if (canAfford(budget)) {
+    std::cout << "建設可能:" << std::boolalpha << canAfford(budget, parkFee) << '\n';
+    if (canAfford(budget, parkFee)) {
         std::cout << "建設しますか？: (y/n)";
         std::cin >> decision;
         if (decision == 'y') {
@@ -45,6 +49,9 @@ int main()
         else {
             std::cout << "建設を見送りました\n";
         }
+    }
+    else {
+        std::cout << "資金が足りません\n";
     }
 
     return 0;
