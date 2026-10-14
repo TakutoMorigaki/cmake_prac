@@ -12,7 +12,7 @@ int main()
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    int totalPopulation{};
+    long long totalPopulation{};
     int countRegion{};
 
     std::cout << "総人口を入力: ";
@@ -21,7 +21,7 @@ int main()
     std::cin >> countRegion;
     std::cout << "1地区あたりの平均人口: " << static_cast<double>(totalPopulation) / countRegion << "\n";
 
-    int budget{};
+    long long budget{};
     char decision{};
     int parkFee{ 1500000 };
 
