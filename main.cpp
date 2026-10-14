@@ -1,8 +1,6 @@
 #include <iostream>
 #include <windows.h>
 
-//#define ENABLE_DEBUG
-
 int getNumber()
 {
     std::cout << "数値を入力: ";
@@ -11,41 +9,41 @@ int getNumber()
     return x;
 }
 
-int calcTaxIncome(int population, int taxPerPerson)
+int calcTax(int population, int taxPerPerson)
 {
     return population * taxPerPerson;
 }
 
-int calcMaintenance(int roadLength, int costPerMeter)
+int calcDistrictIncome(int population, int taxPerPerson, int bonus)
 {
-    int total{ roadLength * costPerMeter };
-    return total;
+    int tax{ calcTax(population, taxPerPerson) };
+    return tax + bonus;
 }
 
-int calcBalance(int income, int maintenance)
+int calcTotal(int a, int b, int c)
 {
-    return income - maintenance;
+    int total{ a };
+    total = total + b;
+    total = total + c;
+    return total;
 }
 
 int main()
 {
     SetConsoleOutputCP(CP_UTF8);
 
-    std::cout << "人口、1人あたりの税、道路の長さ、1mあたりの維持費を順に入力してください\n";
-    int population{ getNumber() };
-    int taxPerPerson{ getNumber() };
-    int roadLength{ getNumber() };
-    int costPerMeter{ getNumber() };
+    std::cout << "3つの地区の人口を順に入力してください\n";
+    int popA{ getNumber() };
+    int popB{ getNumber() };
+    int popC{ getNumber() };
 
-    int income{ calcTaxIncome(population, taxPerPerson) };
-#ifdef ENABLE_DEBUG
-std::cerr << income << "\n";
-#endif // ENABLE_DEBUG
-    int maintenance{ calcMaintenance(roadLength, costPerMeter) };
-#ifdef ENABLE_DEBUG
-std::cerr << maintenance << "\n";
-#endif // ENABLE_DEBUG
+    int taxPerPerson{ 3 };
+    int bonus{ 100 };
 
-    std::cout << "収支: " << calcBalance(income, maintenance) << '\n';
+    int incomeA{ calcDistrictIncome(popA, taxPerPerson, bonus) };
+    int incomeB{ calcDistrictIncome(popB, taxPerPerson, bonus) };
+    int incomeC{ calcDistrictIncome(popC, taxPerPerson, bonus) };   // bonus taxPerPersonの順番が逆
+
+    std::cout << "合計税収: " << calcTotal(incomeA, incomeB, incomeC) << '\n';
     return 0;
 }
